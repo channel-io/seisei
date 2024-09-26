@@ -16,15 +16,15 @@
       "explorer/context": [
         {
           "when": "explorerResourceIsFolder",
-          "command": "seisei.helloWorld",
+          "command": "seisei.generate",
           "group": "Boilerplate"
         }
       ]
     },
     "commands": [
       {
-        "command": "seisei.helloWorld",
-        "title": "Hello World"
+        "command": "seisei.generate",
+        "title": "seisei code"
       }
     ]
   },
