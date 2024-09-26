@@ -1,8 +1,10 @@
 {
   "name": "seisei-core",
+  "description": "core package for seisei",
   "version": "1.0.0",
   "repository": {
-    "url": "channel-io/seisei",
+    "type": "git",
+    "url": "https://github.com/channel-io/seisei",
     "directory": "packages/core"
   },
   "files": ["./dist"],
@@ -16,6 +18,7 @@
     }
   },
   "scripts": {
+    "watch": "tsup --watch",
     "build": "tsup",
     "format": "biome format --write ./src/**/*",
     "lint": "biome lint --write ./src/**/*",

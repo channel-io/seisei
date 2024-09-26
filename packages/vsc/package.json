@@ -2,6 +2,11 @@
   "name": "seisei-vsc",
   "description": "seisei for vscode extension",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/channel-io/seisei",
+    "directory": "packages/vsc"
+  },
   "engines": {
     "vscode": "^1.93.0"
   },
