@@ -161,4 +161,3 @@ export function generateConfig(outputPath?: string) {
 
 export type { Config, Template }
 export { NAME }
-export { makeDirectory } from './utils'
