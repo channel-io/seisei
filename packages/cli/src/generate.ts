@@ -11,31 +11,41 @@ import { selectDirectory } from './prompt/selectDirectory'
 import { selectTemplate } from './prompt/selectTemplate'
 
 export async function generate() {
-  const config: Config = readConfigFile()
-
-  const templates = getTemplates()
-  const template = await selectTemplate(templates)
-
-  const outputPath = await selectDirectory(config.base)
-
-  const overwriteOptions = await confirmOverwrite(config.overwrite)
-
-  const variants = getVariantsFromTemplate(template)
-
-  let variantMap = {}
-  if (variants.length === 0) {
-    console.log('No variants found')
-  } else {
-    console.log('You have the following variants:', variants)
-    variantMap = await inputVariants(variants, config.variants)
+  let config: Config
+  try {
+    config = readConfigFile()
+  } catch (e) {
+    console.error(e instanceof Error ? e.message : 'Failed to read config file')
+    return
   }
 
-  const files = generateCode({
-    template,
-    outputPath,
-    variants: variantMap,
-    options: overwriteOptions,
-  })
+  try {
+    const templates = getTemplates()
+    const template = await selectTemplate(templates)
 
-  console.log(files)
+    const outputPath = await selectDirectory(config.base)
+
+    const overwriteOptions = await confirmOverwrite(config.overwrite)
+
+    const variants = getVariantsFromTemplate(template)
+
+    let variantMap = {}
+    if (variants.length === 0) {
+      console.log('No variants found')
+    } else {
+      console.log('You have the following variants:', variants)
+      variantMap = await inputVariants(variants, config.variants)
+    }
+
+    generateCode({
+      template,
+      outputPath,
+      variants: variantMap,
+      options: overwriteOptions,
+    })
+
+    console.log('Successfully generated code')
+  } catch (e) {
+    console.error(e instanceof Error ? e.message : 'Failed to generate code')
+  }
 }
