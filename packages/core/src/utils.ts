@@ -12,7 +12,7 @@ export function assert(
   }
 }
 
-export function findConfigDirPath() {
+export function findConfigDirectoryPath() {
   let currentDir = process.cwd()
 
   while (currentDir !== path.parse(currentDir).root) {

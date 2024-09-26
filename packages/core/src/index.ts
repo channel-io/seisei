@@ -11,7 +11,7 @@ import type { Config, Template } from './types'
 import {
   assert,
   type GenerateCodeWithReplacingArgs,
-  findConfigDirPath,
+  findConfigDirectoryPath,
   generateCodeWithReplacing,
   getDirectoriesStats,
   isHidden,
@@ -29,7 +29,7 @@ import {
  */
 
 export function readConfigFile(configDirectoryPath?: string): Config {
-  const _path = configDirectoryPath ?? findConfigDirPath() ?? ''
+  const _path = configDirectoryPath ?? findConfigDirectoryPath() ?? ''
 
   assert(fs.existsSync(_path), 'Could not find config directory')
 
@@ -58,7 +58,7 @@ export function readConfigFile(configDirectoryPath?: string): Config {
  */
 
 export function getTemplates(configFolderPath?: string): Template[] {
-  const _path = configFolderPath ?? findConfigDirPath() ?? ''
+  const _path = configFolderPath ?? findConfigDirectoryPath() ?? ''
 
   assert(fs.existsSync(_path), 'Could not find config directory')
 
