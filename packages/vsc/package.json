@@ -1,0 +1,39 @@
+{
+  "name": "seisei-vsc",
+  "description": "seisei for vscode extension",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "main": "./dist/index.js",
+  "contributes": {
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "seisei.helloWorld",
+          "group": "Boilerplate"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "seisei.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "format": "biome format --write ./src/**/*",
+    "lint": "biome lint --write ./src/**/*",
+    "check": "biome check --write ./src/**/*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.93.0"
+  },
+  "dependencies": {
+    "seisei-core": "workspace:*"
+  }
+}

@@ -1,14 +1,11 @@
 {
-  "name": "@seisei/core",
+  "name": "seisei-core",
   "version": "1.0.0",
   "repository": {
     "url": "channel-io/seisei",
     "directory": "packages/core"
   },
-  "publishConfig": {},
-  "files": [
-    "./dist"
-  ],
+  "files": ["./dist"],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -18,11 +15,11 @@
       "require": "./dist/index.cjs"
     }
   },
-  "private": true,
   "scripts": {
     "build": "tsup",
     "format": "biome format --write ./src/**/*",
     "lint": "biome lint --write ./src/**/*",
-    "check": "biome check --write ./src/**/*"
+    "check": "biome check --write ./src/**/*",
+    "publish": "yarn build && yarn npm publish --access public"
   }
 }
