@@ -1,0 +1,26 @@
+{
+  "name": "@seisei/cli",
+  "repository": {
+    "url": "channel-io/seisei",
+    "directory": "packages/cli"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@inquirer/prompts": "^6.0.1",
+    "@seisei/core": "workspace:*",
+    "inquirer-folder-selector": "^1.1.4"
+  },
+  "bin": {
+    "seisei": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "start": "node ./dist/index.js",
+    "format": "biome format --write ./src/**/*",
+    "lint": "biome lint --write ./src/**/*",
+    "check": "biome check --write ./src/**/*"
+  }
+}

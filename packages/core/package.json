@@ -1,0 +1,28 @@
+{
+  "name": "@seisei/core",
+  "version": "1.0.0",
+  "repository": {
+    "url": "channel-io/seisei",
+    "directory": "packages/core"
+  },
+  "publishConfig": {},
+  "files": [
+    "./dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "scripts": {
+    "build": "tsup",
+    "format": "biome format --write ./src/**/*",
+    "lint": "biome lint --write ./src/**/*",
+    "check": "biome check --write ./src/**/*"
+  }
+}
