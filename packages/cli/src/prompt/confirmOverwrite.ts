@@ -1,5 +1,5 @@
 import { confirm } from '@inquirer/prompts'
-import type { Config } from '@seisei/core'
+import type { Config } from 'seisei-core'
 
 type OverwriteOptions = Config['overwrite']
 

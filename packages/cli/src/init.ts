@@ -1,4 +1,4 @@
-import { NAME, generateConfig } from '@seisei/core'
+import { NAME, generateConfig } from 'seisei-core'
 
 export function init() {
   try {

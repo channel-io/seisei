@@ -6,7 +6,7 @@ import {
   getTemplates,
   getVariantsFromTemplate,
   readConfigFile,
-} from '@seisei/core'
+} from 'seisei-core'
 import * as vscode from 'vscode'
 import { inputOutputPath } from './prompt/inputOutputPath'
 import { inputVariants } from './prompt/inputVariants'

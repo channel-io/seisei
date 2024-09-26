@@ -1,5 +1,5 @@
 import { input } from '@inquirer/prompts'
-import type { Config } from '@seisei/core'
+import type { Config } from 'seisei-core'
 
 type VariantsMap = Config['variants']
 

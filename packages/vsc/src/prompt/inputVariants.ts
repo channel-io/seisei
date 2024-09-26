@@ -1,4 +1,4 @@
-import type { Config } from '@seisei/core'
+import type { Config } from 'seisei-core'
 import * as vscode from 'vscode'
 
 type VariantsMap = Config['variants']
