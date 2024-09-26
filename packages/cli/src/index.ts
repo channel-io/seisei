@@ -5,6 +5,6 @@ import { init } from './init'
 
 const argv = process.argv.slice(2)
 
-const func = argv.includes('init') ? init : generate
+const execute = argv.includes('init') ? init : generate
 
-func()
+execute()
