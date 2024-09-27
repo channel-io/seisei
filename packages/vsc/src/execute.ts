@@ -1,4 +1,3 @@
-import * as path from 'node:path'
 import {
   type Config,
   NAME,
@@ -75,7 +74,7 @@ export async function execute(props?: { fsPath?: string }) {
     const variants = getVariantsFromTemplate(template)
     const variantsMap = await inputVariants(variants, config.variants)
 
-    if (Object.keys(variantsMap).length !== variants.length) {
+    if (variants.some((variant) => !variantsMap[variant])) {
       vscode.window.showErrorMessage('Variant input was cancelled.')
       return null
     }
