@@ -1,10 +1,14 @@
 import * as vscode from 'vscode'
 import { execute } from './execute'
+import { init } from './init'
 
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand('seisei.generate', (x) => {
-    execute(x)
-  })
+  const generateCode = vscode.commands.registerCommand(
+    'seisei.generate',
+    execute,
+  )
 
-  context.subscriptions.push(disposable)
+  const initConfig = vscode.commands.registerCommand('seisei.init', init)
+
+  context.subscriptions.push(generateCode, initConfig)
 }
