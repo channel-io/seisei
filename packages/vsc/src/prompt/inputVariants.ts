@@ -19,7 +19,9 @@ export async function inputVariants(
       return {}
     }
 
-    variantsMap[variant] = userInput
+    if (userInput !== '') {
+      variantsMap[variant] = userInput
+    }
   }
 
   return variantsMap
