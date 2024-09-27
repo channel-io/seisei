@@ -12,8 +12,8 @@ export function assert(
   }
 }
 
-export function findConfigDirectoryPath() {
-  let currentDir = process.cwd()
+export function findConfigDirectoryPath(from?: string): string | null {
+  let currentDir = from ?? process.cwd()
 
   while (currentDir !== path.parse(currentDir).root) {
     const _path = path.join(currentDir, NAME)

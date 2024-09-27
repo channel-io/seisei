@@ -29,7 +29,7 @@ import {
  */
 
 export function readConfigFile(configDirectoryPath?: string): Config {
-  const _path = configDirectoryPath ?? findConfigDirectoryPath() ?? ''
+  const _path = findConfigDirectoryPath(configDirectoryPath) ?? ''
 
   assert(fs.existsSync(_path), 'Could not find config directory')
 
@@ -58,7 +58,7 @@ export function readConfigFile(configDirectoryPath?: string): Config {
  */
 
 export function getTemplates(configFolderPath?: string): Template[] {
-  const _path = configFolderPath ?? findConfigDirectoryPath() ?? ''
+  const _path = findConfigDirectoryPath(configFolderPath) ?? ''
 
   assert(fs.existsSync(_path), 'Could not find config directory')
 
