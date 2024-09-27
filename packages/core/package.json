@@ -7,9 +7,7 @@
     "url": "https://github.com/channel-io/seisei",
     "directory": "packages/core"
   },
-  "files": [
-    "./dist"
-  ],
+  "files": ["./dist"],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -25,6 +23,7 @@
     "format": "biome format --write ./src/**/*",
     "lint": "biome lint --write ./src/**/*",
     "check": "biome check --write ./src/**/*",
-    "publish": "yarn build && yarn npm publish --access public"
+    "prepublish": "yarn build",
+    "publish": "yarn npm publish --access public"
   }
 }
