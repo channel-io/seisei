@@ -1,6 +1,8 @@
 {
   "name": "seisei",
   "version": "1.0.0",
+  "author": "Channel Corp",
+  "license": "Apache-2.0",
   "description": "CLI tool for generating code from templates.",
   "repository": {
     "type": "git",
@@ -8,7 +10,9 @@
     "directory": "packages/cli"
   },
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@inquirer/prompts": "^6.0.1",
     "inquirer-folder-selector": "^1.1.4",

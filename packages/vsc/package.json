@@ -1,7 +1,12 @@
 {
   "name": "seisei-vsc",
-  "description": "seisei for vscode extension",
+  "displayName": "seisei",
+  "author": "Channel Corp",
+  "publisher": "jintak0401",
+  "license": "Apache-2.0",
+  "description": "code generator based on custom templates",
   "version": "1.0.0",
+  "icon": "assets/seisei-icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/channel-io/seisei",
@@ -11,6 +16,7 @@
     "vscode": "^1.93.0"
   },
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "contributes": {
     "menus": {
       "explorer/context": [
@@ -42,12 +48,19 @@
     "watch": "tsup --watch",
     "format": "biome format --write ./src/**/*",
     "lint": "biome lint --write ./src/**/*",
-    "check": "biome check --write ./src/**/*"
+    "check": "biome check --write ./src/**/*",
+    "compile": "yarn build",
+    "vscode:prepublish": "yarn build"
   },
   "devDependencies": {
-    "@types/vscode": "^1.93.0"
+    "@types/vscode": "^1.93.0",
+    "@vscode/vsce": "^3.1.0"
   },
   "dependencies": {
     "seisei-core": "workspace:*"
+  },
+  "vsce": {
+    "dependencies": false,
+    "useYarn": true
   }
 }
