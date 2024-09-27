@@ -8,6 +8,7 @@ export default defineConfig([
   },
   {
     ...cjsConfig,
+    dts: true,
     name: '@seisei/core - cjs',
   },
 ])
