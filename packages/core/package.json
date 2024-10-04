@@ -7,6 +7,9 @@
     "url": "https://github.com/channel-io/seisei",
     "directory": "packages/core"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": ["./dist"],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
