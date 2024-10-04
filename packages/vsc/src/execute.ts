@@ -1,6 +1,6 @@
 import {
+  CONFIG_DIRECTORY_NAME,
   type Config,
-  NAME,
   type Template,
   generateCode,
   getTemplates,
@@ -49,7 +49,9 @@ export async function execute(props?: { fsPath?: string }) {
     const templates = getTemplates(outputPath)
 
     if (templates.length === 0) {
-      vscode.window.showErrorMessage(`No templates found in ${NAME} folder`)
+      vscode.window.showErrorMessage(
+        `No templates found in ${CONFIG_DIRECTORY_NAME} folder`,
+      )
       return null
     }
 

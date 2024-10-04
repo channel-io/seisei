@@ -1,6 +1,6 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
-import { DEFAULT_CONFIG, NAME } from './constants'
+import { CONFIG_DIRECTORY_NAME, DEFAULT_CONFIG } from './constants'
 import type { Config, DirectoryStats } from './types'
 
 export function assert(
@@ -16,7 +16,7 @@ export function findConfigDirectoryPath(from?: string): string | null {
   let currentDir = from ?? process.cwd()
 
   while (currentDir !== path.parse(currentDir).root) {
-    const _path = path.join(currentDir, NAME)
+    const _path = path.join(currentDir, CONFIG_DIRECTORY_NAME)
 
     if (fs.existsSync(_path)) {
       return _path

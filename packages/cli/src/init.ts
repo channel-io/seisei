@@ -1,4 +1,4 @@
-import { NAME, generateConfig } from 'seisei-core'
+import { CONFIG_DIRECTORY_NAME, generateConfig } from 'seisei-core'
 
 export function init() {
   try {
@@ -7,8 +7,10 @@ export function init() {
   } catch {
     console.error('Failed to generate config. Check these things:')
     console.error(
-      `- There should be no ${NAME} directory in the current directory`,
+      `- There should be no ${CONFIG_DIRECTORY_NAME} directory in the current directory`,
     )
-    console.error(`- There should be no config.json file in ${NAME} directory`)
+    console.error(
+      `- There should be no config.json file in ${CONFIG_DIRECTORY_NAME} directory`,
+    )
   }
 }

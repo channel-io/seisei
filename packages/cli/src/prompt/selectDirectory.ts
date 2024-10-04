@@ -1,6 +1,6 @@
 import { confirm } from '@inquirer/prompts'
 import { folderSelector } from 'inquirer-folder-selector'
-import { NAME } from 'seisei-core'
+import { CONFIG_DIRECTORY_NAME } from 'seisei-core'
 
 export async function selectDirectory(configPath: string): Promise<string> {
   let ans: string
@@ -10,7 +10,7 @@ export async function selectDirectory(configPath: string): Promise<string> {
     ans = await folderSelector({
       basePath: configPath,
       message: `Enter path from ${configPath}:`,
-      filter: ({ name }) => name !== NAME,
+      filter: ({ name }) => name !== CONFIG_DIRECTORY_NAME,
     })
     _confirm = await confirm({
       message: 'Do you want to create codes at this path?',

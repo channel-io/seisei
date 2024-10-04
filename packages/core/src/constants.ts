@@ -1,6 +1,6 @@
 import type { Config } from './types'
 
-export const NAME = '_seisei'
+export const CONFIG_DIRECTORY_NAME = '_seisei'
 
 export const DEFAULT_CONFIG: Config = {
   base: './',

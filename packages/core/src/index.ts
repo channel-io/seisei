@@ -1,11 +1,11 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import {
+  CONFIG_DIRECTORY_NAME,
   DEFAULT_CONFIG,
   DEFAULT_TEMPLATE_CONTENT,
   DEFAULT_TEMPLATE_FILE_NAME,
   EXAMPLE_VARIANTS,
-  NAME,
 } from './constants'
 import type { Config, Template } from './types'
 import {
@@ -133,7 +133,7 @@ export function generateCode(
 export function generateConfig(outputPath?: string) {
   const configDirectoryPath = makeDirectory({
     outputPath,
-    name: NAME,
+    name: CONFIG_DIRECTORY_NAME,
   })
 
   const exampleConfig = {
@@ -160,4 +160,4 @@ export function generateConfig(outputPath?: string) {
 }
 
 export type { Config, Template }
-export { NAME }
+export { CONFIG_DIRECTORY_NAME }
