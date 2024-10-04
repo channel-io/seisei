@@ -3,9 +3,12 @@
   "displayName": "seisei",
   "author": "Channel Corp",
   "publisher": "jintak0401",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "Apache-2.0",
   "description": "code generator based on custom templates",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "assets/seisei-icon.png",
   "repository": {
     "type": "git",
@@ -23,7 +26,7 @@
         {
           "when": "explorerResourceIsFolder",
           "command": "seisei.generate",
-          "group": "Boilerplate"
+          "group": "seisei"
         },
         {
           "when": "explorerResourceIsFolder",
