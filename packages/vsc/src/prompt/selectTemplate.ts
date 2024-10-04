@@ -1,4 +1,4 @@
-import type { Template } from 'seisei-core'
+import type { Template } from '@seisei/core'
 import * as vscode from 'vscode'
 
 export async function selectTemplate(

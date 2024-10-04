@@ -6,7 +6,7 @@ import {
   getTemplates,
   getVariantsFromTemplate,
   readConfigFile,
-} from 'seisei-core'
+} from '@seisei/core'
 import * as vscode from 'vscode'
 import { confirmOverwrite } from './prompt/confirmOverwrite'
 import { inputOutputPath } from './prompt/inputOutputPath'

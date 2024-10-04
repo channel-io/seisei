@@ -1,6 +1,6 @@
 import { confirm } from '@inquirer/prompts'
+import { CONFIG_DIRECTORY_NAME } from '@seisei/core'
 import { folderSelector } from 'inquirer-folder-selector'
-import { CONFIG_DIRECTORY_NAME } from 'seisei-core'
 
 export async function selectDirectory(configPath: string): Promise<string> {
   let ans: string

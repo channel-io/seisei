@@ -4,7 +4,7 @@ import {
   getTemplates,
   getVariantsFromTemplate,
   readConfigFile,
-} from 'seisei-core'
+} from '@seisei/core'
 import { confirmOverwrite } from './prompt/confirmOverwrite'
 import { inputVariants } from './prompt/inputVariants'
 import { selectDirectory } from './prompt/selectDirectory'

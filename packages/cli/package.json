@@ -1,6 +1,6 @@
 {
-  "name": "seisei",
-  "version": "1.1.0",
+  "name": "@seisei/cli",
+  "version": "1.0.0",
   "author": "Channel Corp",
   "license": "Apache-2.0",
   "description": "CLI tool for generating code from templates.",
@@ -13,13 +13,17 @@
     "directory": "packages/cli"
   },
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@inquirer/prompts": "^6.0.1",
-    "inquirer-folder-selector": "^1.1.4",
-    "seisei-core": "workspace:*"
+    "@seisei/core": "workspace:*",
+    "inquirer-folder-selector": "^1.1.4"
   },
-  "bin": "./dist/index.js",
+  "bin": {
+    "seisei": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsup",
     "start": "node ./dist/index.js",

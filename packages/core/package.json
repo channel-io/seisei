@@ -1,7 +1,7 @@
 {
-  "name": "seisei-core",
+  "name": "@seisei/core",
   "description": "core package for seisei",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/channel-io/seisei",
@@ -10,7 +10,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["./dist"],
+  "files": [
+    "./dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {

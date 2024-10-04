@@ -23,7 +23,6 @@
     "publish:cli": "yarn workspace seisei-cli run publish",
     "publish:core": "yarn workspace seisei-core run publish"
   },
-  "packageManager": "yarn@4.5.0",
   "devDependencies": {
     "@biomejs/biome": "^1.9.2",
     "@tsconfig/node-lts": "^20.1.3",
@@ -33,5 +32,6 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "packageManager": "yarn@4.5.0"
 }

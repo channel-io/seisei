@@ -1,5 +1,5 @@
 {
-  "name": "seisei-vsc",
+  "name": "@seisei/vsc",
   "displayName": "seisei",
   "author": "Channel Corp",
   "publisher": "jintak0401",
@@ -60,7 +60,7 @@
     "@vscode/vsce": "^3.1.0"
   },
   "dependencies": {
-    "seisei-core": "workspace:*"
+    "@seisei/core": "workspace:*"
   },
   "vsce": {
     "dependencies": false,
