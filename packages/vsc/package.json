@@ -18,6 +18,7 @@
   "engines": {
     "vscode": "^1.93.0"
   },
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "contributes": {
@@ -31,7 +32,7 @@
         {
           "when": "explorerResourceIsFolder",
           "command": "seisei.init",
-          "group": "Boilerplate"
+          "group": "seisei"
         }
       ]
     },
