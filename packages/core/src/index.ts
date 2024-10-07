@@ -80,18 +80,8 @@ export function getTemplates(configFolderPath?: string): Template[] {
  * @returns {string[]} The list of variants
  * @throws {Error} If the template directory is not found
  */
-export function getVariantsFromTemplate(template: Template): string[]
-
-/**
- * Gets the list of variants from the template
- * @param {string} template - The path to the template
- *
- * @returns {string[]} The list of variants
- * @throws {Error} If the template directory is not found
- */
-export function getVariantsFromTemplate(template: string): string[]
-export function getVariantsFromTemplate(template: Template | string): string[] {
-  return searchVariants(typeof template === 'string' ? template : template.path)
+export function getVariantsFromTemplate(template: Template): string[] {
+  return searchVariants(template.path)
 }
 
 interface GenerateCodeArgs
@@ -107,20 +97,13 @@ interface GenerateCodeArgs
  * @param {boolean} [args.options] - Optional overwrite behavior configuration from the `Config` type.
  */
 export function generateCode(
-  args: Omit<GenerateCodeArgs, 'templatePath'> & { template: Template },
-): string[]
-export function generateCode(
-  args: Omit<GenerateCodeArgs, 'templatePath'> & { template: string },
-): string[]
-export function generateCode(
   args: Omit<GenerateCodeArgs, 'templatePath'> & {
-    template: Template | string
+    template: Template
   },
 ): string[] {
   return generateCodeWithReplacing({
     ...args,
-    templatePath:
-      typeof args.template === 'string' ? args.template : args.template.path,
+    templatePath: args.template.path,
   })
 }
 
