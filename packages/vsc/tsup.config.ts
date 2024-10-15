@@ -1,16 +1,10 @@
 import { defineConfig } from 'tsup'
-import { cjsConfig, esmConfig } from '../../tsup.config'
+import { esmConfig } from '../../tsup.config'
 
 export default defineConfig([
   {
     ...esmConfig,
-    name: '@seisei/vsc - esm',
-    noExternal: [/^((?!(vscode)).)*$/],
-    external: ['vscode'],
-  },
-  {
-    ...cjsConfig,
-    name: '@seisei/vsc - cjs',
+    name: '@channel.io/seisei-vsc - esm',
     noExternal: [/^((?!(vscode)).)*$/],
     external: ['vscode'],
   },

@@ -1,24 +1,44 @@
 {
-  "name": "seisei",
+  "name": "@channel.io/seisei-cli",
   "version": "1.0.0",
+  "author": "Channel Corp",
+  "license": "Apache-2.0",
+  "description": "CLI tool for generating code from templates.",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
-    "url": "channel-io/seisei",
+    "type": "git",
+    "url": "https://github.com/channel-io/seisei",
     "directory": "packages/cli"
   },
+  "keywords": [
+    "channel",
+    "extension",
+    "seisei",
+    "code",
+    "generator",
+    "template"
+  ],
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
+    "@channel.io/seisei-core": "workspace:*",
     "@inquirer/prompts": "^6.0.1",
-    "inquirer-folder-selector": "^1.1.4",
-    "seisei-core": "workspace:*"
+    "inquirer-folder-selector": "^1.1.4"
   },
-  "bin": "./dist/index.js",
+  "bin": {
+    "seisei": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsup",
     "start": "node ./dist/index.js",
     "format": "biome format --write ./src/**/*",
     "lint": "biome lint --write ./src/**/*",
     "check": "biome check --write ./src/**/*",
-    "publish": "yarn build && yarn npm publish --access public"
+    "prepublish": "yarn build",
+    "publish": "yarn npm publish --access public"
   }
 }

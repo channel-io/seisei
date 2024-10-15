@@ -1,25 +1,57 @@
 {
-  "name": "seisei-vsc",
-  "description": "seisei for vscode extension",
+  "name": "@channel.io/seisei-vsc",
+  "displayName": "seisei",
+  "author": "Channel Corp",
+  "publisher": "ChannelCorp",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "Apache-2.0",
+  "description": "code generator based on custom templates",
   "version": "1.0.0",
+  "keywords": [
+    "channel",
+    "extension",
+    "seisei",
+    "code",
+    "generator",
+    "template"
+  ],
+  "icon": "assets/seisei-icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/channel-io/seisei",
+    "directory": "packages/vsc"
+  },
   "engines": {
     "vscode": "^1.93.0"
   },
+  "type": "module",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "contributes": {
     "menus": {
       "explorer/context": [
         {
           "when": "explorerResourceIsFolder",
-          "command": "seisei.helloWorld",
-          "group": "Boilerplate"
+          "command": "seisei.generate",
+          "group": "seisei"
+        },
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "seisei.init",
+          "group": "seisei"
         }
       ]
     },
     "commands": [
       {
-        "command": "seisei.helloWorld",
-        "title": "Hello World"
+        "command": "seisei.generate",
+        "title": "seisei code"
+      },
+      {
+        "command": "seisei.init",
+        "title": "seisei init"
       }
     ]
   },
@@ -28,12 +60,19 @@
     "watch": "tsup --watch",
     "format": "biome format --write ./src/**/*",
     "lint": "biome lint --write ./src/**/*",
-    "check": "biome check --write ./src/**/*"
+    "check": "biome check --write ./src/**/*",
+    "compile": "yarn build",
+    "vscode:prepublish": "yarn build"
   },
   "devDependencies": {
-    "@types/vscode": "^1.93.0"
+    "@types/vscode": "^1.93.0",
+    "@vscode/vsce": "^3.1.0"
   },
   "dependencies": {
-    "seisei-core": "workspace:*"
+    "@channel.io/seisei-core": "workspace:*"
+  },
+  "vsce": {
+    "dependencies": false,
+    "useYarn": true
   }
 }

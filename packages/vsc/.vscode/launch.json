@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch CLI",
+      "program": "${workspaceFolder}/dist/index.js", // 실행할 파일 경로
+      "cwd": "${workspaceFolder}", // 현재 작업 디렉토리
+      "console": "integratedTerminal", // 통합 터미널에서 실행
+      "internalConsoleOptions": "neverOpen", // 내부 콘솔은 열리지 않도록 설정
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js" // Sourcemap을 사용하기 위한 경로
+      ]
+    }
+  ]
+}
