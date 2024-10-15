@@ -1,5 +1,5 @@
+import type { Config } from '@channel.io/seisei-core'
 import { input } from '@inquirer/prompts'
-import type { Config } from '@seisei/core'
 
 type VariantsMap = Config['variants']
 

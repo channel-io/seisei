@@ -1,5 +1,5 @@
+import type { Template } from '@channel.io/seisei-core'
 import { search } from '@inquirer/prompts'
-import type { Template } from '@seisei/core'
 
 export async function selectTemplate(
   templates: Template[] = [],

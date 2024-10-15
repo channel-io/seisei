@@ -4,7 +4,7 @@ import { esmConfig } from '../../tsup.config'
 export default defineConfig([
   {
     ...esmConfig,
-    name: '@seisei/vsc - esm',
+    name: '@channel.io/seisei-vsc - esm',
     noExternal: [/^((?!(vscode)).)*$/],
     external: ['vscode'],
   },

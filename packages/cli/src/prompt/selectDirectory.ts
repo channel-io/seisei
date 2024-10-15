@@ -1,5 +1,5 @@
+import { CONFIG_DIRECTORY_NAME } from '@channel.io/seisei-core'
 import { confirm } from '@inquirer/prompts'
-import { CONFIG_DIRECTORY_NAME } from '@seisei/core'
 import { folderSelector } from 'inquirer-folder-selector'
 
 export async function selectDirectory(configPath: string): Promise<string> {

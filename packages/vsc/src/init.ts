@@ -1,4 +1,4 @@
-import { generateConfig } from '@seisei/core'
+import { generateConfig } from '@channel.io/seisei-core'
 import vscode from 'vscode'
 import { inputOutputPath } from './prompt/inputOutputPath'
 

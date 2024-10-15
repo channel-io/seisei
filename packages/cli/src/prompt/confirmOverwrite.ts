@@ -1,5 +1,5 @@
+import type { Config } from '@channel.io/seisei-core'
 import { confirm } from '@inquirer/prompts'
-import type { Config } from '@seisei/core'
 
 type OverwriteOptions = Config['overwrite']
 

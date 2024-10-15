@@ -1,5 +1,5 @@
 {
-  "name": "@seisei/core",
+  "name": "@channel.io/seisei-core",
   "description": "core package for seisei",
   "version": "1.0.0",
   "repository": {
@@ -10,7 +10,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["./dist"],
+  "files": [
+    "./dist"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

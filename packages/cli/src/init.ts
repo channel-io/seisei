@@ -1,4 +1,4 @@
-import { CONFIG_DIRECTORY_NAME, generateConfig } from '@seisei/core'
+import { CONFIG_DIRECTORY_NAME, generateConfig } from '@channel.io/seisei-core'
 
 export function init() {
   try {
