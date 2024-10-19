@@ -34,5 +34,8 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.5.1"
+  "packageManager": "yarn@4.5.1",
+  "dependencies": {
+    "@changesets/cli": "^2.27.9"
+  }
 }
