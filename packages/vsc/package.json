@@ -1,14 +1,14 @@
 {
-  "name": "@channel.io/seisei-vsc",
+  "name": "seisei-vsc",
+  "version": "1.0.0",
   "displayName": "seisei",
-  "author": "Channel Corp",
+  "author": "ChannelCorp",
   "publisher": "ChannelCorp",
   "publishConfig": {
     "access": "public"
   },
   "license": "Apache-2.0",
   "description": "code generator based on custom templates",
-  "version": "1.0.0",
   "keywords": [
     "channel",
     "extension",
@@ -26,9 +26,8 @@
   "engines": {
     "vscode": "^1.93.0"
   },
-  "type": "module",
+  "type": "commonjs",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "contributes": {
     "menus": {
       "explorer/context": [
@@ -62,7 +61,8 @@
     "lint": "biome lint --write ./src/**/*",
     "check": "biome check --write ./src/**/*",
     "compile": "yarn build",
-    "vscode:prepublish": "yarn build"
+    "vscode:prepublish": "yarn build",
+    "publish": "vsce publish"
   },
   "devDependencies": {
     "@types/vscode": "^1.93.0",

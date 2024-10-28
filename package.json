@@ -6,22 +6,23 @@
   "scripts": {
     "format:cli": "yarn workspace @channel.io/seisei-cli run format",
     "format:core": "yarn workspace @channel.io/seisei-core run format",
-    "format:vsc": "yarn workspace @channel.io/seisei-vsc run format",
+    "format:vsc": "yarn workspace seisei-vsc run format",
     "format": "yarn format:cli && yarn format:core && yarn format:vsc",
     "lint:cli": "yarn workspace @channel.io/seisei-cli run lint",
     "lint:core": "yarn workspace @channel.io/seisei-core run lint",
-    "lint:vsc": "yarn workspace @channel.io/seisei-vsc run lint",
+    "lint:vsc": "yarn workspace seisei-vsc run lint",
     "lint": "yarn lint:cli && yarn lint:core && yarn lint:vsc",
     "check:cli": "yarn workspace @channel.io/seisei-cli run check",
     "check:core": "yarn workspace @channel.io/seisei-core run check",
-    "check:vsc": "yarn workspace @channel.io/seisei-vsc run check",
+    "check:vsc": "yarn workspace seisei-vsc run check",
     "check": "yarn check:cli && yarn check:core && yarn check:vsc",
     "build:core": "yarn workspace @channel.io/seisei-core run build",
     "build:cli": "yarn workspace @channel.io/seisei-cli run build",
-    "build:vsc": "yarn workspace @channel.io/seisei-vsc run build",
+    "build:vsc": "yarn workspace seisei-vsc run build",
     "build": "yarn build:core && yarn build:cli && yarn build:vsc",
     "publish:cli": "yarn workspace @channel.io/seisei-cli run publish",
-    "publish:core": "yarn workspace @channel.io/seisei-core run publish"
+    "publish:core": "yarn workspace @channel.io/seisei-core run publish",
+    "publish:vsc": "yarn workspace seisei-vsc run publish"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.2",
@@ -33,5 +34,8 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.1",
+  "dependencies": {
+    "@changesets/cli": "^2.27.9"
+  }
 }

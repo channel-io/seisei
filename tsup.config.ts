@@ -1,8 +1,18 @@
 import type { Options } from 'tsup'
 
-export const esmConfig: Options = {
+export const commonConfig: Options = {
   entry: ['./src/index.ts'],
-  format: ['esm'],
   platform: 'node',
-  treeshake: true,
+  clean: true,
+  minify: true,
+}
+
+export const esmConfig: Options = {
+  ...commonConfig,
+  format: ['esm'],
+}
+
+export const cjsConfig: Options = {
+  ...commonConfig,
+  format: ['cjs'],
 }
