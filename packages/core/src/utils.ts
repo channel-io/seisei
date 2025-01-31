@@ -1,7 +1,21 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { CONFIG_DIRECTORY_NAME, DEFAULT_CONFIG } from './constants'
-import type { Config, DirectoryStats } from './types'
+import {
+  CaseSuffixes,
+  type CaseSuffix,
+  type Config,
+  type DirectoryStats,
+  type VariantWithCase,
+} from './types'
+
+const VARIANT_PATTERN = (() => {
+  const suffixPattern = Object.values(CaseSuffixes).join('|')
+  return `{{(.+?)}(${suffixPattern})?}`
+})()
+
+const VARIANT_REGEX = new RegExp(VARIANT_PATTERN, 'g')
+const SINGLE_VARIANT_REGEX = new RegExp(`^${VARIANT_PATTERN}$`)
 
 export function assert(
   condition: boolean,
@@ -55,13 +69,13 @@ export function readJson(jsonPath: string) {
   }
 }
 
-function extractVariants(content: string) {
-  const regex = /{{(.*?)}}/g // e.g.) {{name}}
-  const matches = []
+function extractVariants(content: string): string[] {
+  const matches: string[] = []
   let match: RegExpExecArray | null = null
 
-  while ((match = regex.exec(content)) !== null) {
-    matches.push(match[1])
+  while ((match = VARIANT_REGEX.exec(content)) !== null) {
+    const variant = parseVariantWithCase(match[0])
+    matches.push(variant.value)
   }
 
   return matches
@@ -72,7 +86,7 @@ function extractVariantsFromFileContent(filePath: string) {
   return extractVariants(fileContent)
 }
 
-export function searchVariants(templatePath: string) {
+export function searchVariants(templatePath: string): string[] {
   const stats = fs.statSync(templatePath)
   const baseName = path.basename(templatePath)
 
@@ -105,8 +119,17 @@ export function searchVariants(templatePath: string) {
 }
 
 export function replaceVariants(str: string, variants: Record<string, string>) {
-  return str.replace(/{{(.*?)}}/g, (_, p1) => {
-    return variants[p1] !== undefined ? variants[p1] : p1
+  return str.replace(VARIANT_REGEX, (fullMatch) => {
+    const { value, suffix } = parseVariantWithCase(fullMatch)
+    const variantValue = variants[value]
+
+    if (variantValue === undefined) return value
+
+    if (suffix && suffix in caseStyleMap) {
+      return caseStyleMap[suffix](variantValue)
+    }
+
+    return variantValue
   })
 }
 
@@ -209,10 +232,62 @@ export function writeFile({
   outputPath,
   fileName,
   body,
-}: { outputPath: string; fileName: string; body: string }) {
+}: {
+  outputPath: string
+  fileName: string
+  body: string
+}) {
   const filePath = path.join(outputPath, fileName)
 
   assert(!fs.existsSync(filePath), 'File already exists')
 
   fs.writeFileSync(filePath, body, 'utf-8')
+}
+
+// 케이스 스타일 변환 유틸리티
+const caseStyleUtils = {
+  toCamelCase: (str: string): string => {
+    return str
+      .replace(/[-_](\w)/g, (_, c) => c.toUpperCase())
+      .replace(/^\w/, (c) => c.toLowerCase())
+  },
+
+  toSnakeCase: (str: string): string => {
+    return str
+      .replace(/[-]|(?=[A-Z])/g, '_')
+      .toLowerCase()
+      .replace(/^_/, '')
+      .replace(/_+/g, '_')
+  },
+
+  toPascalCase: (str: string): string => {
+    return str
+      .replace(/[-_](\w)/g, (_, c) => c.toUpperCase())
+      .replace(/^\w/, (c) => c.toUpperCase())
+  },
+
+  toKebabCase: (str: string): string => {
+    return str
+      .replace(/[_]|(?=[A-Z])/g, '-')
+      .toLowerCase()
+      .replace(/^-/, '')
+      .replace(/-+/g, '-')
+  },
+}
+
+export const caseStyleMap: Record<CaseSuffix, (str: string) => string> = {
+  [CaseSuffixes.CAMEL]: caseStyleUtils.toCamelCase,
+  [CaseSuffixes.SNAKE]: caseStyleUtils.toSnakeCase,
+  [CaseSuffixes.PASCAL]: caseStyleUtils.toPascalCase,
+  [CaseSuffixes.KEBAB]: caseStyleUtils.toKebabCase,
+}
+
+export function parseVariantWithCase(variant: string): VariantWithCase {
+  const match = variant.match(SINGLE_VARIANT_REGEX)
+  if (!match) return { value: variant }
+
+  return {
+    value: match[1],
+    suffix: match[2] as CaseSuffix | undefined,
+  }
 }
