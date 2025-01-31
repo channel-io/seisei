@@ -1,6 +1,6 @@
 {
   "name": "seisei-vsc",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "seisei",
   "author": "ChannelCorp",
   "publisher": "ChannelCorp",
@@ -46,11 +46,11 @@
     "commands": [
       {
         "command": "seisei.generate",
-        "title": "seisei code"
+        "title": "generate code with seisei template"
       },
       {
         "command": "seisei.init",
-        "title": "seisei init"
+        "title": "initialize seisei config folder"
       }
     ]
   },
