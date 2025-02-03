@@ -10,11 +10,21 @@ import {
 } from './types'
 
 const VARIANT_PATTERN = (() => {
-  const suffixPattern = Object.values(CaseSuffixes).join('|')
-  return `{{(.+?)}(${suffixPattern})?}`
+  const suffixPattern = Object.values(CaseSuffixes).join('|') // 'cc|sc|pc|kc'
+
+  // 숫자 포함 가능한 네 가지 케이스 정의
+  const allowedPattern = [
+    '[a-z][a-zA-Z0-9]*', // camelCase
+    '[a-z]+(?:_[a-z0-9]+)+', // snake_case
+    '[A-Z][a-zA-Z0-9]*', // PascalCase
+    '[a-z]+(?:-[a-z0-9]+)+', // kebab-case
+  ].join('|')
+
+  // {{변수명}suffix} 형태의 패턴
+  return `\\{\\{(${allowedPattern})\\}(${suffixPattern})?\\}`
 })()
 
-const VARIANT_REGEX = new RegExp(VARIANT_PATTERN, 'g')
+export const VARIANT_REGEX = new RegExp(VARIANT_PATTERN, 'g')
 const SINGLE_VARIANT_REGEX = new RegExp(`^${VARIANT_PATTERN}$`)
 
 export function assert(
@@ -74,8 +84,7 @@ function extractVariants(content: string): string[] {
   let match: RegExpExecArray | null = null
 
   while ((match = VARIANT_REGEX.exec(content)) !== null) {
-    const variant = parseVariantWithCase(match[0])
-    matches.push(variant.value)
+    matches.push(match[1])
   }
 
   return matches
@@ -284,7 +293,9 @@ export const caseStyleMap: Record<CaseSuffix, (str: string) => string> = {
 
 export function parseVariantWithCase(variant: string): VariantWithCase {
   const match = variant.match(SINGLE_VARIANT_REGEX)
-  if (!match) return { value: variant }
+  if (!match) {
+    return { value: variant }
+  }
 
   return {
     value: match[1],

@@ -1,4 +1,9 @@
-import { parseVariantWithCase, replaceVariants, caseStyleMap } from './utils'
+import {
+  parseVariantWithCase,
+  replaceVariants,
+  caseStyleMap,
+  VARIANT_REGEX,
+} from './utils'
 import { type CaseSuffix, CaseSuffixes } from './types'
 
 describe('Case Style Utils', () => {
@@ -199,6 +204,90 @@ describe('Case Style Utils', () => {
         export const hello_world = helloWorld
       `.trim(),
       )
+    })
+  })
+})
+
+describe('VARIANT_REGEX', () => {
+  it('should match basic variable patterns', () => {
+    const testCases = [
+      {
+        input: '{{variable}}',
+        expected: [['{{variable}}', 'variable', undefined]],
+      },
+      {
+        input: '{{myVar}cc}',
+        expected: [['{{myVar}cc}', 'myVar', 'cc']],
+      },
+      {
+        input: '{{snake_case}sc}',
+        expected: [['{{snake_case}sc}', 'snake_case', 'sc']],
+      },
+      {
+        input: '{{kebab-case}kc}',
+        expected: [['{{kebab-case}kc}', 'kebab-case', 'kc']],
+      },
+      {
+        input: '{{PascalCase}pc}',
+        expected: [['{{PascalCase}pc}', 'PascalCase', 'pc']],
+      },
+    ]
+
+    testCases.forEach(({ input, expected }) => {
+      const matches = [...input.matchAll(VARIANT_REGEX)]
+      expect(matches.map((match) => Array.from(match))).toEqual(expected)
+    })
+  })
+
+  it('should match multiple variables in a string', () => {
+    const input = 'const {{name}} = new {{Type}pc}({{param}cc});'
+    const expected = [
+      ['{{name}}', 'name', undefined],
+      ['{{Type}pc}', 'Type', 'pc'],
+      ['{{param}cc}', 'param', 'cc'],
+    ]
+
+    const matches = [...input.matchAll(VARIANT_REGEX)]
+    expect(matches.map((match) => Array.from(match))).toEqual(expected)
+  })
+
+  it('should handle nested curly braces', () => {
+    const testCases = [
+      {
+        input: '{{{variable}}}',
+        expected: [['{{variable}}', 'variable', undefined]],
+      },
+      {
+        input: '{{{myVar}cc}}',
+        expected: [['{{myVar}cc}', 'myVar', 'cc']],
+      },
+      {
+        input: '{{{{PascalCase}pc}}}',
+        expected: [['{{PascalCase}pc}', 'PascalCase', 'pc']],
+      },
+    ]
+
+    testCases.forEach(({ input, expected }) => {
+      const matches = [...input.matchAll(VARIANT_REGEX)]
+      expect(matches.map((match) => Array.from(match))).toEqual(expected)
+    })
+  })
+
+  it('should not match invalid patterns', () => {
+    const invalidPatterns = [
+      '{{}}', // 빈 변수
+      '{{ }}', // 공백만 있는 경우
+      '{{ value }}', // 공백이 포함된 변수명
+      '{{123var}}', // 숫자로 시작하는 변수명
+      '{{var!name}}', // 특수문자가 포함된 변수명
+      '{{var}invalid}', // 잘못된 suffix
+      '{{var-name_mixed}cc}', // 혼합된 케이스 스타일
+      '{{ value: true }}', // 객체 형태
+    ]
+
+    invalidPatterns.forEach((pattern) => {
+      const matches = [...pattern.matchAll(VARIANT_REGEX)]
+      expect(matches).toHaveLength(0)
     })
   })
 })
